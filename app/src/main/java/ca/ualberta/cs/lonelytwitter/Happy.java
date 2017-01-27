@@ -1,10 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
+//Created by Ghazal Jangani
 import java.util.Date;
-
-/**
- * Created by kazakov on 1/19/17.
- */
 
 public class Happy extends Mood {
     public Happy() {
