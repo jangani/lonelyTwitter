@@ -17,6 +17,20 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
         NormalTweet tweet = new NormalTweet("some tweet");
         tweets.add(tweet);
         assertTrue(tweets.hasTweet(tweet));
+        
+        try{
+            tweets.addTweet(tweet);
+            fail();
+        }
+        catch (IllegalArgumentException I){}
+        
+        NormalTweet tweet2 = new NormalTweet("some tweet");
+        try {
+            tweets.addTweet(tweet2);
+        } 
+        catch (IllegalArgumentException I) {
+            fail();
+        }
     }
 
     public void testHasTweet() {
@@ -25,6 +39,8 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
         assertFalse(tweets.hasTweet(tweet));
         tweets.add(tweet);
         assertTrue(tweets.hasTweet(tweet));
+        NormalTweet tweet2 = new NormalTweet("other tweet");
+        assertFalse(tweets.hasTweet(tweet3));
     }
 
     public void testGetTweet(){
@@ -48,8 +64,26 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
     }
 
     public void testgetCount(){
-
+        TweetList tweets = new TweetList();
+        NormalTweet tweet = new NormalTweet("some tweet");
+        assertEquals(tweets.getCount(), 0);
+        tweets.addTweet(tweet);
+        assertEquals(tweets.getCount(), 1);
     }
-
+    
+    public void testGetTweets() {
+        TweetList tweets = new TweetList();
+        NormalTweet tweet = new NormalTweet("2");
+        tweets.addTweet(tweet);
+        NormalTweet tweet2 = new NormalTweet("3");
+        tweets.addTweet(tweet2);
+        NormalTweet tweet3 = new NormalTweet("1");
+        tweets.addTweet(tweet3);
+        
+        ArrayList<NormalTweet> tweetsTest = tweets.getTweets();
+        assert(tweetsTest.get(0).equals(tweet3));
+        assert(tweetsTest.get(1).equals(tweet));
+        assert(tweetsTest.get(2).equals(tweet2));
+    }
 }
 
