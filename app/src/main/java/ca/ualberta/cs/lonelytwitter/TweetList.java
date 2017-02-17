@@ -23,5 +23,13 @@ public class TweetList {
     public NormalTweet getTweet(int index){
         return tweets.get(index);
     }
-
+    
+    public int getCount() {
+        return tweet.size();
+    }
+    
+    public ArrayList<NormalTweet> getTweets() {
+         Collections.sort(tweets);
+        return tweets;
+    }
 }
