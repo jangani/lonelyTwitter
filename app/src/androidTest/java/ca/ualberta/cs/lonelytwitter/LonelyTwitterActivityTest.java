@@ -57,7 +57,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         solo.ClickOnButton("Save");
         solo.waitForText("Text Tweet!");
         
-        finat ListView oldTweetsList = activity.getOldTweetsList();
+        final ListView oldTweetsList = activity.getOldTweetsList();
         Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
         assertEquals("Test Tweet!", tweet.getMessage());
         
@@ -72,6 +72,6 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
     
     @Override
     public void tearDown() throws Exception{
-        
+        solo.finishOpenedActivities();
     }
 }
