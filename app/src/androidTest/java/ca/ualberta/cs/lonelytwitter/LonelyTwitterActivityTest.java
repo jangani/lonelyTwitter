@@ -11,6 +11,7 @@ import junit.framework.TestCase;
 
 /**
 * Write the code directly in GitHub the machine is so slow to run the studio
+* wrote by Ghazal Jangani on March 2nd/2017
 */
 public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 {
     
@@ -46,16 +47,27 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
     }
     
     public void testClickTweetList(){
+        LonelyTwitterActivity activity = (LonelyTwitterActivity)solo.getCurrentActivity();
+        
         solo.assertCurrentActivity("wrong activity", LonelyTwiterActivity.class);
         
         solo.ClickOnButton("Clear");
         solo.enterText(EditText) solo.getView(R.id.body), "Test Tweet");
         
         solo.ClickOnButton("Save");
+        solo.waitForText("Text Tweet!");
+        
+        finat ListView oldTweetsList = activity.getOldTweetsList();
+        Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
+        assertEquals("Test Tweet!", tweet.getMessage());
         
         solo.ClickList(0);
         
         solo.assertCurrentActivity("wrong activity", EditTwiterActivity.class);
+        assertTrue(solo.waitForText("TextView"));
+        
+        solo.getBack();
+        solo.assertCurrentActivity("wrong Activity", LonelyTwitterActivity.class);
     }
     
     @Override
