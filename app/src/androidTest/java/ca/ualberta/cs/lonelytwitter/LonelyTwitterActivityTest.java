@@ -8,6 +8,10 @@ import junit.framework.TestCase;
 /**
  * Created by wz on 14/09/15.
  */
+
+/**
+* Write the code directly in GitHub the machine is so slow to run the studio
+*/
 public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 {
     
     private Solo solo;
@@ -39,6 +43,19 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         
         solo.ClickOnButton("Clear");
         assertFalse(solo.searchText("Test Tweet"));
+    }
+    
+    public void testClickTweetList(){
+        solo.assertCurrentActivity("wrong activity", LonelyTwiterActivity.class);
+        
+        solo.ClickOnButton("Clear");
+        solo.enterText(EditText) solo.getView(R.id.body), "Test Tweet");
+        
+        solo.ClickOnButton("Save");
+        
+        solo.ClickList(0);
+        
+        solo.assertCurrentActivity("wrong activity", EditTwiterActivity.class);
     }
     
     @Override
